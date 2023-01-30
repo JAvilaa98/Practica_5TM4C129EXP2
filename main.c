@@ -8,10 +8,11 @@
 
 int main(void)
 {
+    uint16_t Result[3];
+    uint16_t duty[3];
 
     //Funciones para configuración 
     Configurar_PLL(); 
-    //Configurar_UART0();
     Configura_Reg_PWM0(8);
     Configura_Reg_ADC0();
 
@@ -19,6 +20,10 @@ int main(void)
     {
         //Se llama a la función para leer y convertir valores del ADC
         ADC0_InSeq2(Result,duty);
+
+        PWM0->_0_CMPB = duty[0];
+        PWM0->_1_CMPA = duty[1];
+        PWM0->_2_CMPA = duty[2];
       
     
     }
